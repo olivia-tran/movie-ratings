@@ -24,11 +24,35 @@ def all_users():
     return render_template("all_users.html", users=users)
 
 
+@app.route("/users", methods=["POST"])
+def register_user():
+    email = request.form.get("email")
+    password = request.form.get("password")
+
+    if crud.get_user_by_email(email) == None:
+        newUser = crud.create_user(email, password)
+        print('this is the if blockn\n')
+
+        flash('Account was succesfully created')
+    else:
+        # crud.get_user_by_email(email)
+        print('this if the else block\n')
+        flash('Email already exists.')
+
+    return redirect('/')
+
+
 @app.route('/users/<user_id>')
 def user_details(user_id):
     user_details = crud.get_user_by_id(user_id)
     return render_template("user_details.html", users=user_details)
 # <a href="/movies">
+
+
+@app.route('/login', methods=['POST'])
+def to_login():
+    flash('Logged In')
+    return redirect('/')
 
 
 @app.route('/movies')
