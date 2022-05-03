@@ -10,7 +10,7 @@ import server
 import crud
 
 os.system("dropdb ratings")
-# More code will go here
+
 os.system("createdb ratings")
 model.connect_to_db(server.app)
 model.db.create_all()
