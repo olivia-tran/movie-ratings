@@ -10,7 +10,7 @@ app = Flask(__name__)
 app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined
 
-# Replace this with routes and view functions!
+
 
 
 @app.route('/')
